@@ -41,7 +41,7 @@ async def regen_task():
 
 class InitRepoStep(bootsteps.StartStopStep):
 
-    def start(self, c):
+    async def start(self, c):
         print("Initialize the repository.")
         setup_cpython_repo()
 
