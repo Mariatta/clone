@@ -30,6 +30,8 @@ def setup_cpython_repo():
 def regen_task():
     """Backport a commit into a branch."""
     print(f"current dir {os.getcwd()}")
+    os.chdir('./cpython')
+    print(f"current dir {os.getcwd()}")
     for l in os.listdir('.'):
         print(l)
     print("===")
