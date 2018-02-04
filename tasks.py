@@ -12,7 +12,7 @@ app.conf.update(BROKER_URL=os.environ['REDIS_URL'],
 
 
 @app.task(rate_limit="1/m")
-async def setup_cpython_repo():
+def setup_cpython_repo():
     print("Setting up CPython repository")
     if "cpython" not in os.listdir('.'):
         subprocess.check_output(
@@ -27,7 +27,7 @@ async def setup_cpython_repo():
 
 
 @app.task(rate_limit="1/m")
-async def regen_task():
+def regen_task():
     """Backport a commit into a branch."""
     print(f"current dir {os.getcwd()}")
     os.chdir('./cpython')
@@ -41,7 +41,7 @@ async def regen_task():
 
 class InitRepoStep(bootsteps.StartStopStep):
 
-    async def start(self, c):
+    def start(self, c):
         print("Initialize the repository.")
         setup_cpython_repo()
 
