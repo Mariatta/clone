@@ -1,2 +1,2 @@
-web: python3 -m server
+web: python3 -m clone
 worker: celery worker --app=tasks.app
