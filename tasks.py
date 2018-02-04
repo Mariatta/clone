@@ -20,6 +20,7 @@ def setup_cpython_repo():
         subprocess.check_output("git config --global user.email 'mariatta.wijaya@gmail.com'".split())
         subprocess.check_output(["git", "config", "--global", "user.name", "'Mariatta.wijaya'"])
         os.chdir('./cpython')
+        print(f"current dir {os.getcwd()}")
         print("Finished setting up CPython Repo")
     else:
         print("cpython directory already exists")
@@ -28,6 +29,10 @@ def setup_cpython_repo():
 @app.task(rate_limit="1/m")
 def regen_task():
     """Backport a commit into a branch."""
+    print(f"current dir {os.getcwd()}")
+    for l in os.listdir('.'):
+        print(l)
+    print("===")
     subprocess.check_output(["make", "regen-all"])
     print("Done make regen-all")
 
