@@ -24,4 +24,6 @@ async def close_the_pr(event, gh):
     async for item in gh.getiter('/repos/mariatta/cpython/git/refs/heads'):
         print(item)
 
-    await gh.post(event.data["pull_request"]["comments_url"], data=pr_comment)
+        await gh.post(event.data["pull_request"]["comments_url"], data=pr_comment)
+        print("break")
+        break
