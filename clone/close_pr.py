@@ -7,7 +7,7 @@ router = gidgethub.routing.Router()
 @router.register("pull_request", action="opened")
 @router.register("pull_request", action="reopened")
 async def close_pr(event, gh, *args, **kwargs):
-    close_the_pr(event, gh)
+    await close_the_pr(event, gh)
 
 
 async def close_the_pr(event, gh):
