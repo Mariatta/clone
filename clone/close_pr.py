@@ -10,10 +10,10 @@ async def close_pr(event, gh, *args, **kwargs):
     close_the_pr(event, gh)
 
 
-def close_the_pr(event, gh):
+async def close_the_pr(event, gh):
     data = {'state': 'closed',
             'maintainer_can_modify': True}
-    gh.patch(event.data["pull_request"]["url"], data=data)
+    await gh.patch(event.data["pull_request"]["url"], data=data)
     pr_comment = {
         'body': "Close it. I'm a bot."
     }
@@ -21,7 +21,7 @@ def close_the_pr(event, gh):
     print("getitem")
     print(pr_comment)
 
-    for item in gh.getiter('/repos/mariatta/cpython/git/refs/heads'):
+    async for item in gh.getiter('/repos/mariatta/cpython/git/refs/heads'):
         print(item)
 
-    gh.post(event.data["pull_request"]["comments_url"], data=pr_comment)
+    await gh.post(event.data["pull_request"]["comments_url"], data=pr_comment)
